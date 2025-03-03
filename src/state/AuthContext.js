@@ -4,8 +4,8 @@ import { Children, createContext, useEffect, useReducer } from "react";
 import AuthReducer from "./AuthReducer";
 
 const initialState = {
-    // user: JSON.parse(localStorage.getItem("user")) || null,
-    user: null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    // user: null,
     // user: {
     //     _id: "67ab917e5e50b70f8acfed55",
     //     username: "shincode",
