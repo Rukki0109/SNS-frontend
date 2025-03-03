@@ -38,8 +38,8 @@ export default function Register() {
         <div className='login'>
             <div className="loginWrapper">
                 <dev className="loginLeft">
-                    <h3 className='loginLogo'>Real SNS</h3>
-                    <span className="loginDesc">本格的なSNSを、自分の手で</span>
+                    <h3 className='loginLogo'>Furugiya 3</h3>
+                    <span className="loginDesc">行きつけの古着屋さんでコミュニティを。</span>
                 </dev>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>

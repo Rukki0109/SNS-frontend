@@ -11,7 +11,7 @@ export default function Topbar() {
         <div className='topbarContainer'>
             <div className="topbarLeft">
                 <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-                    <span className="logo">Real SNS</span>
+                    <span className="logo">Furugiya 3</span>
                 </Link>
             </div>
             <div className="topbarCenter">
