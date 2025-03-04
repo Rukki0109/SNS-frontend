@@ -39,7 +39,7 @@ export default function Register() {
             <div className="loginWrapper">
                 <dev className="loginLeft">
                     <h3 className='loginLogo'>Furugiya 3</h3>
-                    <span className="loginDesc">行きつけの古着屋さんでコミュニティを。</span>
+                    <span className="loginDesc">古着屋さんでコミュニティを。</span>
                 </dev>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
