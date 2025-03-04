@@ -12,6 +12,7 @@ export default function Profile() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user, setUser] = useState({});
     const username = useParams().username;
+    const{myuser} = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -42,7 +43,7 @@ export default function Profile() {
                         <h4 className='profileInfoName'>{user.username}</h4>
                         <span className="profileInfoDesc">{user.desc}</span>
                         {/* 自身のプロフィールページではない場合のみ <Follow /> を表示 */}
-                        {(!username || username !== user.username) && <Follow />}
+                        {(user.username !== myuser.username) && <Follow />}
                     </div>
                     <div className="profileRightBottom">
                         <Timeline username={username} />
