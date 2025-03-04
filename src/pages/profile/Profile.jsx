@@ -12,7 +12,6 @@ import { AuthContext } from '../../state/AuthContext';
 export default function Profile() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user, setUser] = useState({});
-    const{myuser} = useContext(AuthContext);
     const username = useParams().username;
 
     useEffect(() => {
@@ -22,7 +21,11 @@ export default function Profile() {
             setUser(response.data);
         }
         fetchUser();
-    }, []);
+    }, [username]);
+
+    
+
+    
 
     return (
         <>
