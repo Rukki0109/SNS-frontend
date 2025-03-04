@@ -44,7 +44,7 @@ export default function Profile() {
                         <h4 className='profileInfoName'>{user.username}</h4>
                         <span className="profileInfoDesc">{user.desc}</span>
                         {/* 自身のプロフィールページではない場合のみ <Follow /> を表示 */}
-                        {user._id !== "nishizawa" && <Follow userId={user._id}/>}
+                        {user._id !== JSON.parse(localStorage.getItem("user")._id) && <Follow userId={user._id}/>}
                     </div>
                     <div className="profileRightBottom">
                         <Timeline username={username} />
