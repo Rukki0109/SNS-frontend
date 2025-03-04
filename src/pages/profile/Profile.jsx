@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Topbar from '../../compornents/topbar/Topbar';
 import Sidebar from '../../compornents/sidebar/Sidebar';
 import Timeline from '../../compornents/timeline/Timeline';
@@ -12,8 +12,8 @@ import { AuthContext } from '../../state/AuthContext';
 export default function Profile() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user, setUser] = useState({});
-    const username = useParams().username;
     const{myuser} = useContext(AuthContext);
+    const username = useParams().username;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -44,7 +44,7 @@ export default function Profile() {
                         <h4 className='profileInfoName'>{user.username}</h4>
                         <span className="profileInfoDesc">{user.desc}</span>
                         {/* 自身のプロフィールページではない場合のみ <Follow /> を表示 */}
-                        {(user.username !== myuser.username) && <Follow />}
+                        {user._id !== "nishizawa" && <Follow userId={user._id}/>}
                     </div>
                     <div className="profileRightBottom">
                         <Timeline username={username} />
