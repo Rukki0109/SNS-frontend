@@ -54,14 +54,16 @@ export default function Profile() {
                                     ? PUBLIC_FOLDER + user.profilePicture
                                     : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                 alt="" className="profileUserImg" />
-                            <button onClick={handleFollow} className={`follow-button ${isFollowing ? "unfollow" : "follow"}`}>
-                                {isFollowing ? "フォロー解除" : "フォロー"}
-                            </button>
                         </div>
                     </div>
                     <div className="profileInfo">
                         <h4 className='profileInfoName'>{user.username}</h4>
                         <span className="profileInfoDesc">{user.desc}</span>
+                        <div className="profileAction">
+                            <button onClick={handleFollow} className={`follow-button ${isFollowing ? "unfollow" : "follow"}`}>
+                                {isFollowing ? "フォロー解除" : "フォロー"}
+                            </button>
+                        </div>
                     </div>
                     <div className="profileRightBottom">
                         <Timeline username={username} />
