@@ -50,27 +50,3 @@
     gap: 15px;
     margin-top: 10px;
 }
-
-.follow-button {
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-}
-
-.follow {
-    background-color: #1da1f2;
-    color: white;
-}
-
-.unfollow {
-    background-color: #ccc;
-    color: black;
-}
-
-.follow-button:hover {
-    opacity: 0.8;
-}
