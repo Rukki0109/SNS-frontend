@@ -60,9 +60,14 @@ export default function Profile() {
                         <h4 className='profileInfoName'>{user.username}</h4>
                         <span className="profileInfoDesc">{user.desc}</span>
                         <div className="profileAction">
-                            <button onClick={handleFollow} className={`follow-button ${isFollowing ? "unfollow" : "follow"}`}>
-                                {isFollowing ? "フォロー解除" : "フォロー"}
-                            </button>
+                            {/* 自身のプロフィールでない場合のみフォローボタンを表示 */}
+                            {user._id !== currentUserId && (
+                                <div className="profileAction">
+                                    <button onClick={handleFollow} className={`follow-button ${isFollowing ? "unfollow" : "follow"}`}>
+                                        {isFollowing ? "フォロー解除" : "フォロー"}
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="profileRightBottom">
