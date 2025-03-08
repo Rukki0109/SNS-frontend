@@ -16,7 +16,7 @@ export default function Search() {
         const fetchResults = async () => {
             if (!query) return;
             try {
-                const response = await fetch(`/posts/search?q=${query}`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/search?q=${query}`);
                 const data = await response.json();
                 setResults(data);
             } catch (error) {
