@@ -1,12 +1,20 @@
 import { Chat, Notifications, Search } from '@mui/icons-material';
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import "./Topbar.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../state/AuthContext"
 
 export default function Topbar() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user } = useContext(AuthContext);
+    const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+    const handleSearch = (e) => {
+        if (e.key === "Enter" && query.trim() !== "") {
+            navigate(`/search?q=${query}`);
+        }
+    };
+
     return (
         <div className='topbarContainer'>
             <div className="topbarLeft">
@@ -17,9 +25,12 @@ export default function Topbar() {
             <div className="topbarCenter">
                 <div className="searchbar">
                     <Search className='searchIcon' />
-                    <input type="text"
-                        className="searchInput"
-                        placeholder='探し物はなんですか'
+                    <input className='searchInput'
+                        type="text"
+                        placeholder="投稿を検索..."
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyPress={handleSearch}  // Enterキーで検索
                     />
                 </div>
             </div>

@@ -1,0 +1,17 @@
+.search {
+    display: flex;
+}
+
+.searchRight {
+    flex: 10.5;
+    display: flex;
+}
+
+.searchResults {
+    flex: 7; 
+    padding: 20px;
+}
+
+.rightbar {
+    flex: 2; 
+}

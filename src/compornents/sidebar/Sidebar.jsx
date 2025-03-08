@@ -20,7 +20,9 @@ export default function Sidebar() {
                     </li>
                     <li className="sidebarListItem">
                         <Search className='sidebarIcon' />
-                        <span className="sidebarListItemText">検索</span>
+                        <Link to="/search" style={{textDecoration: "none", color: "black"}}>
+                            <span className="sidebarListItemText">検索</span>
+                        </Link>
                     </li>
                     <li className="sidebarListItem">
                         <Notifications className='sidebarIcon' />
