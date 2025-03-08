@@ -5,6 +5,7 @@ import CloseFriend from '../closeFriend/CloseFriend'
 import { Users } from "../../dummyData"
 import { Link } from "react-router-dom"
 import { AuthContext } from '../../state/AuthContext'
+import Followings from '../followings/Followings'
 
 export default function Sidebar() {
     const {user} = useContext(AuthContext);
@@ -48,11 +49,12 @@ export default function Sidebar() {
                     </li>
                 </ul>
                 <hr className="sidebarHr" />
-                <ul className="sidebarFriendList">
+                {/* <ul className="sidebarFriendList">
                     {Users.map((user) => (
                         <CloseFriend user={user} key={user.id} />
                     ))}
-                </ul>
+                </ul> */}
+                <Followings userId={user?._id}/>
             </div>
         </div>
     );

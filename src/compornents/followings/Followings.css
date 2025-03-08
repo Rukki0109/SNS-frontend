@@ -1,0 +1,49 @@
+.followings {
+    flex: 2.5;
+    height: 100vh;
+}
+
+.followingsWrapper {
+    padding: 20px;
+}
+
+.followingsList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.followingsTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.followingsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+}
+
+.followingsItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.followingsImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.followingsName {
+    font-size: 16px;
+    font-weight: 500;
+}
