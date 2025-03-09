@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Rightbar.css"
 import { Users } from "../../dummyData"
 import Online from '../online/Online'
+import axios from 'axios';
+import Followings from '../followings/Followings';
 
-export default function Rightbar({ user }) {
+export default function Rightbar({ userId }) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [stats, setStats] = useState({ followers: 0, followings: 0, postCount: 0 });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}/stats`);
+        setStats(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchStats();
+  }, [userId]);
 
   const HomeRightbar = () => {
     return (
@@ -16,19 +31,31 @@ export default function Rightbar({ user }) {
           </span>
         </div>
         <img src="assets/ad.jpeg" alt="" className='eventImg' />
-        <h4 className="rightbarTitle">オンラインの友達</h4>
+        {/* <h4 className="rightbarTitle">オンラインの友達</h4>
         <ul className="rightbarFriendList">
           {Users.map((user) => (
             <Online user={user} key={user.id} />
           ))}
-        </ul>
+        </ul> */}
         <p className="promotionTitle">プロモーション広告</p>
-        <img src="assets/promotion/promotion1.jpeg" alt="" className="rightbarPromotionImg" />
-        <p className="promotionName">ショッピング</p>
-        <img src="assets/promotion/promotion2.jpeg" alt="" className="rightbarPromotionImg" />
-        <p className="promotionName">カーショップ</p>
-        <img src="assets/promotion/promotion3.jpeg" alt="" className="rightbarPromotionImg" />
-        <p className="promotionName">shinkode株式会社</p>
+
+        {/* 私のオリジナル洋服ブランド */}
+        <a href="https://nishizawa.fashionstore.jp/" target="_blank" rel="noopener noreferrer">
+          <img src={process.env.REACT_APP_PUBLIC_FOLDER + "/promotion/nishizawa.jpg"} alt="オリジナル洋服ブランド" className="rightbarPromotionImg" />
+        </a>
+        <p className="promotionName">私のオリジナル洋服ブランド</p>
+
+        {/* GitHub アカウント */}
+        <a href="https://github.com/Rukki0109" target="_blank" rel="noopener noreferrer">
+          <img src={process.env.REACT_APP_PUBLIC_FOLDER + "/promotion/github-logo.png"} alt="GitHub" className="rightbarPromotionImg" />
+        </a>
+        <p className="promotionName">GitHubアカウント</p>
+
+        {/* 自己紹介サイト */}
+        <a href="https://rukki0109.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+          <img src={process.env.REACT_APP_PUBLIC_FOLDER + "/person/eye.jpg"} alt="自己紹介サイト" className="rightbarPromotionImg" />
+        </a>
+        <p className="promotionName">自己紹介サイト</p>
       </>
     )
   }
@@ -39,12 +66,22 @@ export default function Rightbar({ user }) {
         <h4 className='rightbarTitle'>ユーザー情報</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">出身:</span>
-            <span className="rightbarInfoKey">福岡</span>
+            <span className="rightbarInfoKey">投稿数:</span>
+            <span className="rightbarInfoValue">{stats.postCount}</span>
           </div>
-          <h4 className="rightbarTitle">あなたの友達</h4>
+          <div className="rightbarInfoItem">
+            <span className="rightbarInfoKey">フォロー中:</span>
+            <span className="rightbarInfoValue">{stats.followings}</span>
+          </div>
+          <div className="rightbarInfoItem">
+            <span className="rightbarInfoKey">フォロワー:</span>
+            <span className="rightbarInfoValue">{stats.followers}</span>
+          </div>
+          <h4 className="rightbarTitle">友達</h4>
           <div className="rightbarFollowings">
-            <div className="rightbarFollowing">
+            <Followings userId={userId} />
+
+            {/* <div className="rightbarFollowing">
               <img src={PUBLIC_FOLDER + "/person/1.jpeg"} alt="" className="rightbarFollowingImg" />
               <span className="rightbarFollowingName">tanaka</span>
             </div>
@@ -63,7 +100,7 @@ export default function Rightbar({ user }) {
             <div className="rightbarFollowing">
               <img src={PUBLIC_FOLDER + "/person/5.jpeg"} alt="" className="rightbarFollowingImg" />
               <span className="rightbarFollowingName">Kikukawa</span>
-            </div>
+            </div> */}
           </div>
 
         </div>
@@ -74,7 +111,7 @@ export default function Rightbar({ user }) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {user ? <ProfileRightbar /> : <HomeRightbar />}
+        {userId ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   )

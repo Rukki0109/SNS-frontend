@@ -24,7 +24,7 @@ export default function Followings({ userId }) {
 
     return (
         <div className="followings">
-            <h3 className="followingsTitle">フォロー中のユーザー</h3>
+            <h3 className="followingsTitle"></h3>
             <ul className="followingsList">
                 {followings.map((friend) => (
                     <li key={friend._id} className="followingsItem">
