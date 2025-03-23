@@ -8,20 +8,20 @@ import { AuthContext } from '../../state/AuthContext'
 import Followings from '../followings/Followings'
 
 export default function Sidebar() {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
                     <li className="sidebarListItem">
                         <Home className='sidebarIcon' />
-                        <Link to="/" style={{textDecoration: "none", color: "black"}}>
+                        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
                             <span className="sidebarListItemText">ホーム</span>
                         </Link>
                     </li>
                     <li className="sidebarListItem">
                         <Search className='sidebarIcon' />
-                        <Link to="/search" style={{textDecoration: "none", color: "black"}}>
+                        <Link to="/search" style={{ textDecoration: "none", color: "black" }}>
                             <span className="sidebarListItemText">検索</span>
                         </Link>
                     </li>
@@ -35,11 +35,13 @@ export default function Sidebar() {
                     </li>
                     <li className="sidebarListItem">
                         <Bookmark className='sidebarIcon' />
-                        <span className="sidebarListItemText">ブックマーク</span>
+                        <Link to={`/likes`} style={{ textDecoration: "none", color: "black" }}>
+                            <span className="sidebarListItemText">いいね済み</span>
+                        </Link>
                     </li>
                     <li className="sidebarListItem">
                         <Person className='sidebarIcon' />
-                        <Link to = {`/profile/${user.username}`} style={{textDecoration: "none", color: "black"}}>
+                        <Link to={`/profile/${user.username}`} style={{ textDecoration: "none", color: "black" }}>
                             <span className="sidebarListItemText">プロフィール</span>
                         </Link>
                     </li>
@@ -54,7 +56,7 @@ export default function Sidebar() {
                         <CloseFriend user={user} key={user.id} />
                     ))}
                 </ul> */}
-                <Followings userId={user?._id}/>
+                <Followings userId={user?._id} />
             </div>
         </div>
     );

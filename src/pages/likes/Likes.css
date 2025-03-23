@@ -1,0 +1,17 @@
+.Likes {
+    display: flex;
+}
+
+.LikesRight {
+    flex: 10.5;
+    display: flex;
+}
+
+.LikesResults {
+    flex: 7; 
+    padding: 20px;
+}
+
+.rightbar {
+    flex: 2; 
+}
