@@ -42,14 +42,30 @@ export default function Post({ post }) {
     const [commentText, setCommentText] = useState("");
     const [comments, setComments] = useState([]);
 
-    const fetchComments = async () => {
-        try {
-            const res = await axios.get(`/comments/${post._id}`);
+    // const fetchComments = async () => {
+    //     try {
+    //         const res = await axios.get(`/comments/${post._id}`);
+    //         setComments(res.data);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+    useEffect(() => {
+        const fetchComments = async () => {
+          try {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/comments/${post._id}`);
+            console.log("💬 取得したコメントデータ:", res.data); // ←これ追加！
             setComments(res.data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
+          } catch (err) {
+            console.error("❌ コメント取得エラー", err);
+            setComments([]); // ← エラー時は空配列にして map() エラー防止
+          }
+        };
+      
+        fetchComments();
+      }, [post._id]);
+      
 
     const handleCommentSubmit = async () => {
         if (commentText.trim() === "") return;
@@ -66,9 +82,11 @@ export default function Post({ post }) {
         }
     };
 
-    useEffect(() => {
-        fetchComments();
-    }, [post._id]);
+    // useEffect(() => {
+    //     fetchComments();
+    // }, [post._id]);
+
+    
 
     return (
         <div className='post'>
