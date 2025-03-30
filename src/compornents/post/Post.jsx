@@ -45,13 +45,15 @@ export default function Post({ post }) {
     const fetchComments = async () => {
         try {
             const res = await axios.get(`/comments/${post._id}`);
+            console.log("🚀 取得したコメントデータ:", res.data);
             setComments(res.data);
         } catch (err) {
-            console.log(err);
+            console.error("❌ コメント取得失敗", err);
+            setComments([]); // エラー時は空配列にして防ぐ
         }
     };
 
-    
+
 
     const handleCommentSubmit = async () => {
         if (commentText.trim() === "") return;
@@ -72,7 +74,7 @@ export default function Post({ post }) {
         fetchComments();
     }, [post._id]);
 
-    
+
 
     return (
         <div className='post'>
