@@ -76,3 +76,77 @@
     font-size: 15px;
     margin-right: 3px;
 }
+
+
+/* コメントセクション全体 */
+.commentBox {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #a0a0a0;
+}
+
+/* コメント入力エリア */
+.commentInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.commentInput input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.commentInput button {
+    padding: 8px 12px;
+    background-color: #2c517c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.commentInput button:hover {
+    background-color: #38689e;
+}
+
+/* コメント一覧 */
+.commentsList {
+    margin-top: 10px;
+}
+
+/* 1件のコメント */
+.commentItem {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.commentItem img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.commentContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.commentUsername {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.commentText {
+    font-size: 14px;
+    line-height: 1.4;
+}
