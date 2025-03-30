@@ -27,7 +27,7 @@ export default function Post({ post }) {
     const handleLike = async () => {
         try {
             //いいねのAPIを叩く
-            await axios.put(`/posts/${post._id}/like`, { userId: currentUser._id })
+            await axios.put(`${process.env.REACT_APP_API_URL}/posts/${post._id}/like`, { userId: currentUser._id })
         } catch (err) {
             console.log(err);
         }
@@ -44,7 +44,7 @@ export default function Post({ post }) {
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get(`/comments/${post._id}`);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/comments/${post._id}`);
             console.log("🚀 取得したコメントデータ:", res.data);
             setComments(res.data);
         } catch (err) {
@@ -58,7 +58,7 @@ export default function Post({ post }) {
     const handleCommentSubmit = async () => {
         if (commentText.trim() === "") return;
         try {
-            await axios.post("/comments", {
+            await axios.post(`${process.env.REACT_APP_API_URL}/comments`, {
                 postId: post._id,
                 userId: currentUser._id,
                 text: commentText
