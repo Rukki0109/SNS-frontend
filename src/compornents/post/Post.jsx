@@ -12,6 +12,8 @@ export default function Post({ post }) {
     const [isLiked, setIsLiked] = useState(false);
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
+    const [shop, setShop] = useState(null);
+
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -54,7 +56,6 @@ export default function Post({ post }) {
     };
 
 
-
     const handleCommentSubmit = async () => {
         if (commentText.trim() === "") return;
         try {
@@ -73,6 +74,21 @@ export default function Post({ post }) {
     useEffect(() => {
         fetchComments();
     }, [post._id]);
+
+    //shop用
+    useEffect(() => {
+        const fetchShop = async () => {
+            if (post.thriftShopId) {
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_API_URL}/thriftshops/${post.thriftShopId}`);
+                    setShop(res.data);
+                } catch (err) {
+                    console.error("古着屋の取得に失敗しました", err);
+                }
+            }
+        };
+        fetchShop();
+    }, [post.thriftShopId]);
 
 
 
@@ -100,6 +116,16 @@ export default function Post({ post }) {
                     <span className="postText">{post.desc}</span>
                     <img src={PUBLIC_FOLDER + post.img} alt="" className="postImg" />
                 </div>
+                {shop && (
+                    <div className="postShopInfo" style={{ marginTop: "10px", fontSize: "14px", color: "#444" }}>
+                        この投稿は
+                        <Link to={`/thriftshop/${shop._id}`} style={{ marginLeft: "5px", fontWeight: "bold", color: "#2e86de" }}>
+                            {shop.name}
+                        </Link>
+                        に関連しています
+                    </div>
+                )}
+
                 <div className="postBottom">
                     <div className="postBottomLeft">
                         <img src={PUBLIC_FOLDER + "/heart.png"} alt="" className="likeIcon" onClick={() => handleLike()} />

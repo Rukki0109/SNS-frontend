@@ -7,6 +7,8 @@ import Search from "./pages/search/search";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { AuthContext } from "./state/AuthContext";
 import Likes from "./pages/likes/Likes";
+import ThriftShop from "./pages/thriftshop/ThriftShop";
+import ThriftshopProfile from "./pages/thriftshop/ThriftshopProfile";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/search" element={<Search />} />
         <Route path="/likes" element={<Likes />} />
+        <Route path="/thriftshop/:id" element={<ThriftshopProfile />} />
+
       </Routes>
     </Router>
   );
